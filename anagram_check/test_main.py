@@ -1,7 +1,12 @@
 from pathlib import Path
 import unittest
 
-from main import get_max_input_length_from_config, is_anagram
+from main import (
+    format_for_display,
+    get_max_display_length_from_config,
+    get_max_input_length_from_config,
+    is_anagram,
+)
 
 TEST_DATA_DIR = Path(__file__).parent / "test_data"
 
@@ -45,6 +50,15 @@ class TestIsAnagram(unittest.TestCase):
 
     def test_supports_text_and_emoji_anagrams(self) -> None:
         self.assertTrue(is_anagram("Code 🚀", "🚀 doce"))
+
+    def test_format_for_display_keeps_short_text_unchanged(self) -> None:
+        self.assertEqual(format_for_display("short text"), "short text")
+
+    def test_format_for_display_shortens_long_text(self) -> None:
+        max_display_length: int = get_max_display_length_from_config()
+        long_text: str = "a" * (max_display_length + 1)
+
+        self.assertEqual(format_for_display(long_text), "a" * max_display_length + "...")
 
     def test_allows_inputs_at_configured_max_length(self) -> None:
         max_input_length: int = get_max_input_length_from_config()
