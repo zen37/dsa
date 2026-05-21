@@ -1,12 +1,12 @@
 from pathlib import Path
 import unittest
 
-from main import (
-    format_for_display,
+from config import (
     get_max_display_length_from_config,
     get_max_input_length_from_config,
-    is_anagram,
 )
+from core import is_anagram
+from output import format_for_display
 
 TEST_DATA_DIR = Path(__file__).parent / "test_data"
 
