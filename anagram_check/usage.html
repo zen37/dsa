@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anagram Checker Usage</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #ffffff;
+      --foreground: #1f2937;
+      --muted: #4b5563;
+      --surface: #f8fafc;
+      --border: #cbd5e1;
+      --accent: #0f766e;
+      --focus: #b45309;
+      --code-background: #111827;
+      --code-foreground: #f9fafb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #111827;
+        --foreground: #f9fafb;
+        --muted: #d1d5db;
+        --surface: #1f2937;
+        --border: #4b5563;
+        --accent: #5eead4;
+        --focus: #fbbf24;
+        --code-background: #030712;
+        --code-foreground: #f9fafb;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    code,
+    kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.95em;
+    }
+
+    code {
+      overflow-wrap: anywhere;
+    }
+
+    pre {
+      margin: 1rem 0;
+      padding: 1rem;
+      overflow-x: auto;
+      border-radius: 0.5rem;
+      background: var(--code-background);
+      color: var(--code-foreground);
+    }
+
+    pre code {
+      color: inherit;
+      white-space: pre;
+    }
+
+    header,
+    main,
+    footer {
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    header {
+      padding-top: 3rem;
+    }
+
+    nav {
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 0 1.5rem 1rem;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    section {
+      margin-top: 2.25rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.25;
+    }
+
+    h1 {
+      margin: 0 0 0.75rem;
+      font-size: 2rem;
+    }
+
+    h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.45rem;
+    }
+
+    h3 {
+      margin: 1.25rem 0 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    dl {
+      display: grid;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    dt {
+      font-weight: 700;
+    }
+
+    dd {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      transform: translateY(-150%);
+      padding: 0.5rem 0.75rem;
+      background: var(--background);
+      border: 2px solid var(--focus);
+      border-radius: 0.25rem;
+      color: var(--foreground);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .summary {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .note {
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      background: var(--surface);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header>
+    <h1>Anagram Checker Usage</h1>
+    <p class="summary">
+      Learn how to run the command-line anagram checker, compare two strings,
+      and control how much input text is shown in the output.
+    </p>
+  </header>
+
+  <nav aria-label="Page sections">
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#quick-start">Quick start</a></li>
+      <li><a href="#options">Options</a></li>
+      <li><a href="#examples">Examples</a></li>
+      <li><a href="#accessibility">Accessibility notes</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <section id="overview" aria-labelledby="overview-heading">
+      <h2 id="overview-heading">Overview</h2>
+      <p>
+        The anagram checker compares two strings and reports whether they are
+        anagrams after cleaning. It ignores configured characters, currently
+        spaces, and applies configured case normalization.
+      </p>
+      <p>
+        If no strings are provided, the script runs built-in examples. If one
+        string is provided without the other, the script prints an error.
+      </p>
+    </section>
+
+    <section id="quick-start" aria-labelledby="quick-start-heading">
+      <h2 id="quick-start-heading">Quick Start</h2>
+
+      <h3>Run the built-in examples</h3>
+      <pre aria-label="Run built-in examples"><code>python3 anagram_check/main.py</code></pre>
+
+      <h3>Compare two strings</h3>
+      <pre aria-label="Compare two strings"><code>python3 anagram_check/main.py listen silent</code></pre>
+
+      <h3>Show command-line help</h3>
+      <pre aria-label="Show command-line help"><code>python3 anagram_check/main.py -h</code></pre>
+    </section>
+
+    <section id="options" aria-labelledby="options-heading">
+      <h2 id="options-heading">Options</h2>
+      <dl>
+        <div>
+          <dt><code>s1</code></dt>
+          <dd>The first string to compare. This argument is optional only when running the built-in examples.</dd>
+        </div>
+        <div>
+          <dt><code>s2</code></dt>
+          <dd>The second string to compare. Provide this whenever <code>s1</code> is provided.</dd>
+        </div>
+        <div>
+          <dt><code>-h</code>, <code>--help</code></dt>
+          <dd>Show the command-line help text and exit.</dd>
+        </div>
+        <div>
+          <dt><code>--more-text CHARS</code></dt>
+          <dd>Show this many extra characters beyond the configured display length.</dd>
+        </div>
+        <div>
+          <dt><code>--show-full-text</code></dt>
+          <dd>Print complete strings instead of truncating long output.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="examples" aria-labelledby="examples-heading">
+      <h2 id="examples-heading">Examples</h2>
+
+      <h3>Use quoted strings when input contains spaces</h3>
+      <pre aria-label="Compare quoted strings with spaces"><code>python3 anagram_check/main.py "Dirty room" "Dormitory"</code></pre>
+
+      <h3>Show more text for long input</h3>
+      <pre aria-label="Show more text for long input"><code>python3 anagram_check/main.py "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" --more-text 5</code></pre>
+
+      <h3>Show the full input strings</h3>
+      <pre aria-label="Show full input strings"><code>python3 anagram_check/main.py "long string one" "long string two" --show-full-text</code></pre>
+
+      <div class="note">
+        <p>
+          The output includes emoji for quick scanning, but it also includes
+          plain text such as <q>are anagrams</q> and <q>are not anagrams</q>.
+          The result does not depend on color or emoji alone.
+        </p>
+      </div>
+    </section>
+
+    <section id="accessibility" aria-labelledby="accessibility-heading">
+      <h2 id="accessibility-heading">Accessibility Notes</h2>
+      <p>
+        This page uses semantic HTML landmarks, ordered headings, descriptive
+        link text, visible keyboard focus styles, high-contrast text colors, and
+        labeled code examples.
+      </p>
+      <p>
+        The page is intentionally static and does not require JavaScript. It can
+        be opened directly in a browser or checked with HTML accessibility tools
+        after rendering.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Anagram checker documentation for the <code>anagram_check</code> exercise.
+    </p>
+  </footer>
+</body>
+</html>
