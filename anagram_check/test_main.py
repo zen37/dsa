@@ -61,6 +61,15 @@ class TestIsAnagram(unittest.TestCase):
 
         self.assertEqual(format_for_display(long_text), expected_text)
 
+    def test_format_for_display_can_show_full_text(self) -> None:
+        max_display_length: int = get_max_display_length_from_config()
+        long_text: str = "a" * (max_display_length + 1)
+
+        self.assertEqual(
+            format_for_display(long_text, show_full_text=True),
+            long_text,
+        )
+
     def test_allows_inputs_at_configured_max_length(self) -> None:
         max_input_length: int = get_max_input_length_from_config()
 
