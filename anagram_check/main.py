@@ -138,7 +138,9 @@ def format_for_display(text: str) -> str:
     if len(text) <= max_display_length:
         return text
 
-    return text[:max_display_length] + "..."
+    hidden_char_count: int = len(text) - max_display_length
+
+    return f"{text[:max_display_length]}... [{hidden_char_count} more chars]"
 
 
 def print_anagram_result(s1: str, s2: str) -> None:
