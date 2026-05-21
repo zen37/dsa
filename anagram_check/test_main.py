@@ -71,12 +71,24 @@ class TestIsAnagram(unittest.TestCase):
             long_text,
         )
 
+    def test_format_for_display_can_show_more_text(self) -> None:
+        max_display_length: int = get_max_display_length_from_config()
+        long_text: str = "a" * (max_display_length + 6)
+        expected_text: str = "a" * (max_display_length + 5) + "... [1 more chars]"
+
+        self.assertEqual(format_for_display(long_text, more_text=5), expected_text)
+
+    def test_format_for_display_rejects_negative_more_text(self) -> None:
+        with self.assertRaises(ValueError):
+            format_for_display("short text", more_text=-1)
+
     def test_cli_help_lists_available_arguments(self) -> None:
         help_text: str = build_parser().format_help()
 
         self.assertIn("s1", help_text)
         self.assertIn("s2", help_text)
         self.assertIn("--show-full-text", help_text)
+        self.assertIn("--more-text", help_text)
 
     def test_allows_inputs_at_configured_max_length(self) -> None:
         max_input_length: int = get_max_input_length_from_config()

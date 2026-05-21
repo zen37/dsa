@@ -36,4 +36,4 @@ def get_max_display_length_from_config() -> int:
 
     Pretend this value is read from config.
     """
-    return 30
+    return 10
