@@ -40,6 +40,12 @@ class TestIsAnagram(unittest.TestCase):
     def test_supports_chinese_anagrams_with_spaces(self) -> None:
         self.assertTrue(is_anagram("你好 世界", "界世好你"))
 
+    def test_supports_emoji_anagrams(self) -> None:
+        self.assertTrue(is_anagram("😀🔥🚀", "🚀😀🔥"))
+
+    def test_supports_text_and_emoji_anagrams(self) -> None:
+        self.assertTrue(is_anagram("Code 🚀", "🚀 doce"))
+
     def test_allows_inputs_at_configured_max_length(self) -> None:
         max_input_length: int = get_max_input_length_from_config()
 
