@@ -30,6 +30,15 @@ def get_max_input_length_from_config() -> int:
     return 1000
 
 
+def get_max_display_length_from_config() -> int:
+    """
+    Return the maximum string length to show in printed output.
+
+    Pretend this value is read from config.
+    """
+    return 30
+
+
 def validate_input_lengths(s1: str, s2: str) -> None:
     """
     Raise ValueError if either input string is longer than the configured limit.
@@ -118,14 +127,31 @@ def is_anagram(s1: str, s2: str) -> bool:
     return True
 
 
+def format_for_display(text: str) -> str:
+    """
+    Return text shortened to the configured display length.
+
+    Time: O(d), Space: O(d), where d is the configured display length.
+    """
+    max_display_length: int = get_max_display_length_from_config()
+
+    if len(text) <= max_display_length:
+        return text
+
+    return text[:max_display_length] + "..."
+
+
 def print_anagram_result(s1: str, s2: str) -> None:
     """
     Print whether two strings are anagrams after cleaning.
     """
+    displayed_s1: str = format_for_display(s1)
+    displayed_s2: str = format_for_display(s2)
+
     if is_anagram(s1, s2):
-        print(f'✅ "{s1}" and "{s2}" are anagrams.')
+        print(f'✅ "{displayed_s1}" and "{displayed_s2}" are anagrams.')
     else:
-        print(f'❌ "{s1}" and "{s2}" are not anagrams.')
+        print(f'❌ "{displayed_s1}" and "{displayed_s2}" are not anagrams.')
 
 
 def main() -> None:
