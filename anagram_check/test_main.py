@@ -6,6 +6,7 @@ from config import (
     get_max_input_length_from_config,
 )
 from core import is_anagram
+from main import build_parser
 from output import format_for_display
 
 TEST_DATA_DIR = Path(__file__).parent / "test_data"
@@ -69,6 +70,13 @@ class TestIsAnagram(unittest.TestCase):
             format_for_display(long_text, show_full_text=True),
             long_text,
         )
+
+    def test_cli_help_lists_available_arguments(self) -> None:
+        help_text: str = build_parser().format_help()
+
+        self.assertIn("s1", help_text)
+        self.assertIn("s2", help_text)
+        self.assertIn("--show-full-text", help_text)
 
     def test_allows_inputs_at_configured_max_length(self) -> None:
         max_input_length: int = get_max_input_length_from_config()
