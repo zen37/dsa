@@ -28,6 +28,18 @@ class TestIsAnagram(unittest.TestCase):
     def test_supports_unicode_casefolding(self) -> None:
         self.assertTrue(is_anagram("Straße", "STRASSE"))
 
+    def test_supports_arabic_anagrams(self) -> None:
+        self.assertTrue(is_anagram("سلام", "مالس"))
+
+    def test_supports_cyrillic_casefolding(self) -> None:
+        self.assertTrue(is_anagram("Москва", "Васком"))
+
+    def test_supports_japanese_anagrams(self) -> None:
+        self.assertTrue(is_anagram("こんにちは", "はちにんこ"))
+
+    def test_supports_chinese_anagrams_with_spaces(self) -> None:
+        self.assertTrue(is_anagram("你好 世界", "界世好你"))
+
     def test_allows_inputs_at_configured_max_length(self) -> None:
         max_input_length: int = get_max_input_length_from_config()
 
