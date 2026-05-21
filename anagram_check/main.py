@@ -9,7 +9,9 @@ def main() -> None:
     print_anagram_result("Listen!", "Silent,")  # False
     print_anagram_result("Dirty room", "Dormitory")  # True
     print_anagram_result("hello", "world")  # False
-    print_anagram_result("Straße", "StRASSE")  # True with casefold
+    print_anagram_result(
+        "Straße", "StRASSE"
+    )  # True with casefold,  # False without casefold
     print_anagram_result("こんにちは 世界", "世 界 こん にちは")  # True
 
 
