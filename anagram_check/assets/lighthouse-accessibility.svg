@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="220" viewBox="0 0 640 220" role="img" aria-labelledby="title desc">
+  <title id="title">Chrome Lighthouse accessibility score for usage.html</title>
+  <desc id="desc">A summary badge showing an Accessibility score of 100 for the anagram checker usage page.</desc>
+  <rect width="640" height="220" rx="12" fill="#ffffff"/>
+  <rect x="1" y="1" width="638" height="218" rx="11" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+  <circle cx="120" cy="110" r="66" fill="none" stroke="#22c55e" stroke-width="12"/>
+  <text x="120" y="126" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="#15803d">100</text>
+  <text x="220" y="88" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#111827">Accessibility</text>
+  <text x="220" y="126" font-family="Arial, sans-serif" font-size="20" fill="#374151">Chrome Lighthouse check</text>
+  <text x="220" y="156" font-family="Arial, sans-serif" font-size="18" fill="#4b5563">usage.html served from localhost</text>
+</svg>

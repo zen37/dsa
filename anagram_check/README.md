@@ -76,3 +76,40 @@ For typical strings the differences are small. For very large inputs, the one-ta
 - **`sorted`** only when the input is small and you want the shortest explanation.
 
 For learning, the one-table version is the most useful — it shows exactly what `Counter` is doing under the hood, which is the core idea behind every anagram check.
+
+---
+
+## Accessibility for `usage.html`
+
+The project includes an HTML usage page at [`usage.html`](usage.html). It was written as a semantic, static help page so it can be checked with browser accessibility tools.
+
+The page was checked in Chrome Lighthouse over `http://localhost:8000/anagram_check/usage.html` and received an Accessibility score of `100`.
+
+![Chrome Lighthouse accessibility score of 100 for usage.html](assets/lighthouse-accessibility.svg)
+
+The automated Lighthouse result is useful, but it does not prove full WCAG compliance. Automated tools only catch a subset of accessibility issues.
+
+Manual checks that should still be performed:
+
+- Use the keyboard only and press `Tab` through the page.
+- Confirm the skip link appears on focus and moves to the main content.
+- Confirm focus order follows the visual reading order.
+- Confirm every focused link has a visible focus indicator.
+- Confirm navigation links move to the expected sections.
+- Read the page with a screen reader such as VoiceOver on macOS.
+- Confirm the page makes sense without relying on layout, color, or emoji.
+- Confirm command examples and option descriptions are understandable.
+
+Helpful commands:
+
+```bash
+python3 -m http.server 8000
+```
+
+```bash
+python3 -m html.parser anagram_check/usage.html
+```
+
+```bash
+python3 -m unittest discover -s anagram_check
+```
