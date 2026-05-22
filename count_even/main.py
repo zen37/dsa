@@ -19,7 +19,7 @@ def count_even(lst: list) -> int:
 
 
 if __name__ == "__main__":
-    print(count_even([2, 1, 2, 3, 4]))  # Expected: 3
+    print(count_even([2, 1, 2, 3.0, 4]))  # Expected: 3
     print(count_even([1, 2, 3, 4, 5, 6, 7, 8]))  # Expected: 4
     print(count_even([1, 2, "b", 4, "x", 6, 7, 8]))  # Expected: 4
     print(count_even([2, False, 2, 3, 4]))  # Expected: 3
