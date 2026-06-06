@@ -1,4 +1,4 @@
-def merge_alternate(word1: str, word2: str) -> str:
+def merge_alternate_2(word1: str, word2: str) -> str:
     """
     Return a string built by alternating characters from word1 and word2.
 
@@ -20,6 +20,21 @@ def merge_alternate(word1: str, word2: str) -> str:
     # (one of these slices will be empty, so this is safe).
     merged.append(word1[shorter_length:])
     merged.append(word2[shorter_length:])
+
+    return "".join(merged)
+
+
+def merge_alternate(word1: str, word2: str) -> str:
+    merged: list[str] = []
+
+    shorter: int = min(len(word1), len(word2))
+
+    for i in range(shorter):
+        merged.append(word1[i])
+        merged.append(word2[i])
+
+    merged.append(word1[shorter:])
+    merged.append(word2[shorter:])
 
     return "".join(merged)
 
