@@ -12,24 +12,17 @@ def two_sum(nums: list[int], target: int) -> list[int]:
         All inputs are integers.
     """
 
-    # Time: first loop - O(n); second loop - O(n) x O(n) x O(n) = O(n^3) -> O(n) + O(n³) = O(n³)
-    # Space:  O(n)
+    # Time: O(n)
+    # Space: O(n)
 
-    if len(nums) == 2:
-        return [0, 1]
-
-    nums_dict: dict[int:int] = {}
+    nums_dict: dict[int, int] = {}
 
     for i, num in enumerate(nums):
-        nums_dict[num] = nums_dict.get(num, []) + [i]
-
-    for i, num in enumerate(nums):
-        for key in nums_dict:
-            if (num + key) == target:
-                for idx in nums_dict[key]:
-                    if idx != i:  # make sure we don't use same index twice
-                        return [i, idx]
+        difference = target - num
+        if difference in nums_dict:
+            return [nums_dict[difference], i]  # [smaller_index, larger_index]
+        nums_dict[num] = i
 
 
 if __name__ == "__main__":
-    print(two_sum([1, 3, 3], 6))
+    print(two_sum([1, 5, 3, 7], 8))
