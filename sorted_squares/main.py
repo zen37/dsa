@@ -50,3 +50,9 @@ def sorted_squares(nums: list[int]) -> list[int]:
         insert_pos -= 1
 
     return nums_square
+
+
+if __name__ == "__main__":
+    print(sorted_squares([-4, -1, 0, 3, 10]))
+    print(sorted_squares([-7, -3, 2, 3, 11]))
+    print(sorted_squares([-2, -2, 2, 2]))
