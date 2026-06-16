@@ -12,7 +12,7 @@ def plus_one(digits: list[int]) -> list[int]:
             if digits[i] < 9:
                 digits[i] = digits[i] + add
                 add = 0
-            else:
+            elif add != 0:
                 digits[i] = 0
                 add = 1
     if add == 1:
@@ -39,5 +39,10 @@ def plus_one_2(digits: list[int]) -> list[int]:
 if __name__ == "__main__":
     print(plus_one([1, 2, 3]))
     print(plus_one([9, 9, 9]))
+    print(plus_one([1, 9, 5]))
+    print(plus_one([0]))
+    print(plus_one([1, 9]))
+    print("-----------------")
     print(plus_one_2([1, 2, 3]))
     print(plus_one_2([9, 9, 9]))
+    print(plus_one_2([1, 9, 5]))
