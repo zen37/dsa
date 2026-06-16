@@ -25,7 +25,7 @@ def plus_one_2(digits: list[int]) -> list[int]:
     # Time: O(n); Space: O(n) worst case for the carry insert
     add: int = 1  # the "+1" we're adding
     for i in range(len(digits) - 1, -1, -1):
-        digits[i] += add
+        digits[i] += 1
         if digits[i] < 10:
             add = 0
             break  # no more carry, stop early
@@ -33,6 +33,25 @@ def plus_one_2(digits: list[int]) -> list[int]:
         add = 1
     if add == 1:
         digits.insert(0, 1)
+    return digits
+
+
+def plus_one_3(digits: list[int]) -> list[int]:
+    # Time O(n); Space O(n)  worst case for the carry insert
+
+    add_one: bool = False
+
+    for i in range(len(digits) - 1, -1, -1):
+        digits[i] += 1
+        if digits[i] < 10:
+            add_one = False
+            break
+        digits[i] = 0
+        add_one = True
+
+    if add_one:
+        digits.insert(0, 1)
+
     return digits
 
 
@@ -46,3 +65,11 @@ if __name__ == "__main__":
     print(plus_one_2([1, 2, 3]))
     print(plus_one_2([9, 9, 9]))
     print(plus_one_2([1, 9, 5]))
+    print(plus_one_2([0]))
+    print(plus_one_2([1, 9]))
+    print("-----------------")
+    print(plus_one_3([1, 2, 3]))
+    print(plus_one_3([9, 9, 9]))
+    print(plus_one_3([1, 9, 5]))
+    print(plus_one_3([0]))
+    print(plus_one_3([1, 9]))
