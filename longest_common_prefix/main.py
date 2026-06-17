@@ -1,4 +1,29 @@
 def longest_common_prefix_1(strs: list[str]) -> str:
+    """Return the longest common prefix shared by all strings in ``strs``.
+
+    Counts every (character, position) pair across all strings. A position
+    belongs to the common prefix only if its character occurs in every
+    string, i.e. its count equals ``len(strs)``. Counting walks the pairs in
+    the order the first word introduces them, so appending matching keys
+    until the first miss reconstructs the prefix of ``strs[0]``.
+
+    Assumes inputs consist of lowercase English letters only (per the
+    ask constraint), so stripping digits from the result removes only
+    the encoded position indices.
+
+    Args:
+        strs: List of strings to compare. May be empty.
+
+    Returns:
+        The longest common prefix. Empty string if ``strs`` is empty or the
+        strings share no common starting character.
+
+    Complexity:
+        n = number of strings, m = length of the longest string.
+        Time:  O(n * m) -- every character of every string is counted once.
+        Space: O(n * m) -- the dict holds up to one entry per distinct
+                            (character, position) pair.
+    """
 
     if len(strs) == 0:
         return ""
@@ -89,10 +114,32 @@ def longest_common_prefix_3(strs: list[str]) -> str:
     return "".join(prefix)
 
 
+def longest_common_prefix(strs: list[str]) -> str:
+    """Return the longest prefix common to every string in strs.
+
+    Uses vertical (column-by-column) scanning: compare the character
+    at each position across all strings, stopping at the first mismatch.
+
+    Time:  O(S) where S is the sum of all characters (worst case scans
+           every character once).
+    Space: O(1) extra (ignoring the output string).
+    """
+    if not strs:
+        return ""
+
+    first = strs[0]
+    for i, char in enumerate(first):  # walk columns of the first string
+        for other in strs[1:]:  # check the same column in the rest
+            if i >= len(other) or other[i] != char:
+                return first[:i]  # mismatch or ran off the end
+    return first  # first string is a prefix of all
+
+
 if __name__ == "__main__":
     print(longest_common_prefix(["interview", "interval", "internal"]))  # "inter"
     print(longest_common_prefix(["flower", "flow", "flight"]))  # "fl"
     print(longest_common_prefix(["dog", "racecar", "car"]))  # ""
     print(longest_common_prefix(["aaaaaa", "ab"]))  # "a
+    print(longest_common_prefix(["aa", "ba"]))  # ""
     print(longest_common_prefix(["a"]))  # "a"
-    print(longest_common_prefix(["ab", "abx", "abcdef"]))  # "a"
+    print(longest_common_prefix(["ab", "abx", "abcdef"]))  # "ab"

@@ -56,7 +56,19 @@ def lcp_zip(strs: list[str]) -> str:
     return "".join(prefix)
 
 
-IMPLS = {"dict": lcp_dict, "vscan": lcp_vscan, "zip": lcp_zip}
+def lcp_column(strs: list[str]) -> str:
+    if not strs:
+        return ""
+
+    first = strs[0]
+    for i, char in enumerate(first):  # walk columns of the first string
+        for other in strs[1:]:  # check the same column in the rest
+            if i >= len(other) or other[i] != char:
+                return first[:i]  # mismatch or ran off the end
+    return first  # first string is a prefix of all
+
+
+IMPLS = {"dict": lcp_dict, "vscan": lcp_vscan, "zip": lcp_zip, "column": lcp_column}
 
 
 # ---------------------------------------------------------------------------
