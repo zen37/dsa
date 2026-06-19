@@ -17,7 +17,7 @@ https://leetcode.com/problems/check-if-the-sentence-is-pangram/description/
 def checkIfPangram(sentence: str) -> bool:
     # return set(sentence) == set("abcdefghijklmnopqrstuvwxyz")
 
-    return len(set(sentence)) == 26
+    return len(set(sentence)) == 26  # number of letters in the English alphabet
 
 
 if __name__ == "__main__":
