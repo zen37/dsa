@@ -17,10 +17,9 @@ def missing_number(nums: list[int]) -> int:
         The missing integer.
 
     Complexity:
-        n = len(nums).
         Time:  O(n) - one pass to sum nums.
         Space: O(1) - only running totals; no scaling allocation.
     """
-    n: int = len(nums)
-    expected_sum: int = n * (n + 1) // 2
-    return expected_sum - sum(nums)
+    for num in range(len(nums) + 1):
+        if num not in nums:
+            return num
