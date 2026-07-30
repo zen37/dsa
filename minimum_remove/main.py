@@ -2,7 +2,6 @@ def minRemoveToMakeValid(s: str) -> str:
     """Remove the minimum number of parentheses so the result is valid."""
 
     stack: list[int] = []
-    # to_remove: list[int] = []
     to_remove: set[int] = set()
     result: list[str] = []
 
@@ -13,10 +12,8 @@ def minRemoveToMakeValid(s: str) -> str:
             if stack:
                 stack.pop()
             else:
-                # to_remove.append(i)
                 to_remove.add(i)
 
-    # to_remove.extend(stack)
     to_remove.update(stack)
 
     for i, ch in enumerate(s):
